@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In — Wakatobi Island Collaboration</title>
+
+  <!-- Tailwind CSS (CDN build) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Font: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Icons: lucide (icon set used across the original design) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="min-h-screen bg-[#eceef2] flex items-center justify-center p-4 sm:p-6 lg:p-10 antialiased text-neutral-900">
+
+  <!-- ================= MAIN CARD ================= -->
+  <div class="relative w-full max-w-[1120px] bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden border border-neutral-100 flex flex-col lg:flex-row min-h-[640px] md:min-h-[700px] transition-all">
+
+    <!-- ---------- LEFT HERO (reef image / headline / wave divider) ---------- -->
+    <div class="relative w-full lg:w-[58%] min-h-[360px] lg:min-h-full overflow-hidden flex flex-col justify-center px-8 sm:px-14 py-12 select-none bg-neutral-900">
+
+      <!-- Aerial reef background image -->
+      <div
+        class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out hover:scale-105"
+        style="background-image: url('download\ \(9\).jpg');"
+      >
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/20"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/30"></div>
+      </div>
+
+      <!-- Center floating disc -->
+      <div class="absolute top-[38%] left-[45%] -translate-x-1/2 -translate-y-1/2 w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-neutral-950/85 shadow-2xl backdrop-blur-xs pointer-events-none border border-white/5"></div>
+
+      <!-- Bottom-left concentric arcs -->
+      <div class="absolute -bottom-20 -left-20 w-80 h-80 pointer-events-none opacity-40">
+        <div class="absolute inset-0 rounded-full border border-white/30"></div>
+        <div class="absolute inset-6 rounded-full border border-white/25"></div>
+        <div class="absolute inset-14 rounded-full border border-white/20"></div>
+        <div class="absolute inset-24 rounded-full border border-white/15"></div>
+      </div>
+
+      <!-- Hero headline -->
+      <div class="relative z-10 max-w-md my-auto">
+        <h1 class="text-white text-2xl sm:text-3xl lg:text-[34px] font-bold leading-tight tracking-tight drop-shadow-md text-left">
+          Millineals Collaboration<br />
+          to optimize local potencial for society<br />
+          in wakatobi island
+        </h1>
+      </div>
+
+      <!-- Organic wave divider (desktop) -->
+      <div class="hidden lg:block absolute top-0 bottom-0 right-0 w-28 h-full pointer-events-none z-20 overflow-hidden">
+        <svg class="absolute top-0 right-0 h-full w-full fill-white" viewBox="0 0 100 700" preserveAspectRatio="none">
+          <path d="M100,0 C20,120 10,220 50,340 C95,460 20,580 100,700 L100,0 Z" />
+        </svg>
+      </div>
+
+      <!-- Wave divider (mobile) -->
+      <div class="lg:hidden absolute bottom-0 left-0 right-0 h-10 w-full pointer-events-none z-20">
+        <svg class="w-full h-full fill-white" viewBox="0 0 500 50" preserveAspectRatio="none">
+          <path d="M0,50 C150,0 350,60 500,10 L500,50 L0,50 Z" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- ---------- RIGHT FORM PANEL ---------- -->
+    <div class="relative w-full lg:w-[42%] bg-white flex flex-col justify-between p-8 sm:p-12 lg:p-14 z-10">
+
+      <!-- Top-right menu -->
+      <div class="flex justify-end mb-4 sm:mb-6 relative">
+        <button
+          type="button"
+          id="menuToggleBtn"
+          class="p-2 -mr-2 rounded-lg text-neutral-900 hover:bg-neutral-100 transition-colors focus:outline-none cursor-pointer"
+          aria-label="Navigation menu"
+          aria-expanded="false"
+        >
+          <div class="flex flex-col items-end gap-1.5 w-6">
+            <span class="block h-[2.5px] w-6 bg-neutral-900 rounded-full"></span>
+            <span class="block h-[2.5px] w-4 bg-neutral-900 rounded-full"></span>
+          </div>
+        </button>
+
+        <!-- Quick menu dropdown -->
+        <div
+          id="quickMenu"
+          class="hidden absolute top-16 right-0 bg-white border border-neutral-200 shadow-xl rounded-xl p-3 z-50 w-48 text-xs flex-col gap-1"
+        >
+          <button data-tab="signin" class="menu-tab-btn w-full text-left px-3 py-2 rounded-lg hover:bg-neutral-100 font-medium text-neutral-800">
+            Sign In View
+          </button>
+          <button data-tab="signup" class="menu-tab-btn w-full text-left px-3 py-2 rounded-lg hover:bg-neutral-100 font-medium text-neutral-800">
+            Sign Up View
+          </button>
+          <button data-tab="forgot" class="menu-tab-btn w-full text-left px-3 py-2 rounded-lg hover:bg-neutral-100 font-medium text-neutral-800">
+            Forgot Password
+          </button>
+          <div class="border-t border-neutral-100 my-1"></div>
+          <button id="exportCodeBtn" class="w-full text-left px-3 py-2 rounded-lg bg-neutral-900 text-white font-medium flex items-center justify-between">
+            <span>View Source</span>
+            <i data-lucide="code-2" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Form body / success state -->
+      <div class="w-full max-w-sm mx-auto my-auto relative z-10">
+
+        <!-- ===== SUCCESS SCREEN ===== -->
+        <div id="successScreen" class="hidden text-center py-6">
+          <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+            <i data-lucide="check-circle-2" class="w-8 h-8"></i>
+          </div>
+          <h2 class="text-2xl font-bold text-neutral-900 mb-2">Welcome to Wakatobi!</h2>
+          <p class="text-xs text-neutral-500 mb-6">
+            You have successfully signed in as <span id="successEmail" class="font-medium text-neutral-800"></span>.
+          </p>
+
+          <div class="p-4 bg-neutral-50 rounded-xl border border-neutral-200 text-left text-xs text-neutral-600 mb-6 space-y-2">
+            <div class="flex justify-between">
+              <span class="text-neutral-400">Project:</span>
+              <span class="font-medium text-neutral-800">Millennials Island Initiative</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-neutral-400">Role:</span>
+              <span class="font-medium text-neutral-800">Community Lead</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-neutral-400">Security:</span>
+              <span class="text-emerald-600 font-semibold flex items-center gap-1">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Verified
+              </span>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            id="resetBtn"
+            class="w-full py-3 bg-neutral-900 hover:bg-neutral-800 text-white font-medium text-xs rounded-lg transition-all shadow-sm cursor-pointer flex items-center justify-center gap-2"
+          >
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+            Sign In With Another Account
+          </button>
+        </div>
+
+        <!-- ===== SIGN IN FORM ===== -->
+        <form id="signinForm" class="space-y-4">
+          <div class="mb-6">
+            <h2 class="text-3xl sm:text-[34px] font-bold text-neutral-900 tracking-tight leading-tight">
+              Welcome<br />Back
+            </h2>
+          </div>
+
+          <div id="signinError" class="hidden p-2.5 bg-red-50 border border-red-200 text-red-600 rounded-lg text-xs font-medium animate-shake"></div>
+
+          <div class="space-y-1.5 text-left">
+            <label class="block text-xs font-semibold text-neutral-800 tracking-wide" for="signinEmail">Email</label>
+            <input
+              id="signinEmail"
+              type="email"
+              placeholder="Enter your email"
+              class="w-full px-3.5 py-2.5 sm:py-3 rounded-lg border border-neutral-300 text-xs sm:text-sm text-neutral-800 placeholder-neutral-400 bg-white focus:outline-none focus:ring-1.5 focus:ring-neutral-900 focus:border-neutral-900 transition-all shadow-2xs"
+            />
+          </div>
+
+          <div class="space-y-1.5 text-left">
+            <label class="block text-xs font-semibold text-neutral-800 tracking-wide" for="signinPassword">Password</label>
+            <div class="relative">
+              <input
+                id="signinPassword"
+                type="password"
+                placeholder="Enter your password"
+                class="w-full px-3.5 py-2.5 sm:py-3 pr-10 rounded-lg border border-neutral-300 text-xs sm:text-sm text-neutral-800 placeholder-neutral-400 bg-white focus:outline-none focus:ring-1.5 focus:ring-neutral-900 focus:border-neutral-900 transition-all shadow-2xs"
+              />
+              <button
+                type="button"
+                id="togglePasswordBtn"
+                class="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-700 transition-colors p-1 cursor-pointer focus:outline-none"
+                aria-label="Show password"
+              >
+                <i data-lucide="eye-off" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-0.5 text-xs">
+            <label class="flex items-center gap-2 cursor-pointer select-none">
+              <input
+                id="rememberMe"
+                type="checkbox"
+                class="w-3.5 h-3.5 rounded border-neutral-300 text-neutral-900 focus:ring-neutral-900 cursor-pointer accent-neutral-900"
+              />
+              <span class="text-neutral-700 font-normal">Remember me</span>
+            </label>
+            <button type="button" data-tab="forgot" class="tab-link-btn text-neutral-700 hover:text-black font-normal hover:underline transition-colors cursor-pointer">
+              Forgot Password
+            </button>
+          </div>
+
+          <div class="pt-2">
+            <button
+              type="submit"
+              id="signinSubmitBtn"
+              class="w-full py-2.5 sm:py-3 px-4 bg-[#1b1b1b] hover:bg-neutral-800 active:scale-[0.99] text-white text-xs sm:text-sm font-medium rounded-lg transition-all shadow-md cursor-pointer flex items-center justify-center gap-2"
+            >
+              <span id="signinSubmitSpinner" class="hidden w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+              <span id="signinSubmitLabel">Sign In</span>
+            </button>
+          </div>
+
+          <div class="text-center py-1">
+            <span class="text-xs text-neutral-600 font-normal">Or</span>
+          </div>
+
+          <div>
+            <button
+              type="button"
+              id="googleSignInBtn"
+              class="w-full py-2.5 sm:py-2.5 px-4 bg-white hover:bg-neutral-50 active:scale-[0.99] border border-neutral-300 text-neutral-800 text-xs sm:text-sm font-medium rounded-lg transition-all flex items-center justify-center gap-2.5 shadow-2xs cursor-pointer"
+            >
+              <svg class="w-4 h-4" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
+              </svg>
+              <span id="googleBtnLabel">Sign in with Google</span>
+            </button>
+          </div>
+
+          <div class="pt-2 text-center">
+            <button type="button" id="autofillBtn" class="text-[11px] text-neutral-400 hover:text-neutral-700 transition-colors underline cursor-pointer">
+              Autofill Demo Credentials
+            </button>
+          </div>
+
+          <div class="text-center pt-1 text-xs text-neutral-500">
+            Don't have an account?
+            <button type="button" data-tab="signup" class="tab-link-btn text-neutral-900 font-semibold hover:underline cursor-pointer">Sign Up</button>
+          </div>
+        </form>
+
+        <!-- ===== SIGN UP FORM ===== -->
+        <form id="signupForm" class="hidden space-y-3.5">
+          <div>
+            <h2 class="text-3xl font-bold text-neutral-900 tracking-tight leading-tight">Create<br />Account</h2>
+          </div>
+
+          <div class="space-y-1 text-left">
+            <label class="block text-xs font-semibold text-neutral-800" for="signupName">Full Name</label>
+            <input
+              id="signupName"
+              type="text"
+              placeholder="e.g. Nowshin Ritu"
+              class="w-full px-3.5 py-2.5 rounded-lg border border-neutral-300 text-xs sm:text-sm text-neutral-800 placeholder-neutral-400 focus:ring-1.5 focus:ring-neutral-900 focus:outline-none"
+              required
+            />
+          </div>
+          <div class="space-y-1 text-left">
+            <label class="block text-xs font-semibold text-neutral-800" for="signupEmail">Email</label>
+            <input
+              id="signupEmail"
+              type="email"
+              placeholder="Enter your email"
+              class="w-full px-3.5 py-2.5 rounded-lg border border-neutral-300 text-xs sm:text-sm text-neutral-800 placeholder-neutral-400 focus:ring-1.5 focus:ring-neutral-900 focus:outline-none"
+              required
+            />
+          </div>
+          <div class="space-y-1 text-left">
+            <label class="block text-xs font-semibold text-neutral-800" for="signupPassword">Password</label>
+            <input
+              id="signupPassword"
+              type="password"
+              placeholder="Create a strong password"
+              class="w-full px-3.5 py-2.5 rounded-lg border border-neutral-300 text-xs sm:text-sm text-neutral-800 placeholder-neutral-400 focus:ring-1.5 focus:ring-neutral-900 focus:outline-none"
+              required
+            />
+          </div>
+
+          <button type="submit" class="w-full py-3 bg-[#1b1b1b] hover:bg-neutral-800 text-white text-xs sm:text-sm font-medium rounded-lg transition-all shadow-md cursor-pointer mt-2">
+            Sign Up
+          </button>
+
+          <div class="text-center pt-1 text-xs text-neutral-500">
+            Already have an account?
+            <button type="button" data-tab="signin" class="tab-link-btn text-neutral-900 font-semibold hover:underline cursor-pointer">Sign In</button>
+          </div>
+        </form>
+
+        <!-- ===== FORGOT PASSWORD FORM ===== -->
+        <form id="forgotForm" class="hidden space-y-4">
+          <div>
+            <h2 class="text-3xl font-bold text-neutral-900 tracking-tight leading-tight">Reset<br />Password</h2>
+            <p class="text-xs text-neutral-500 mt-2">
+              Enter your email address and we'll send you instructions to reset your password.
+            </p>
+          </div>
+          <div class="space-y-1 text-left">
+            <label class="block text-xs font-semibold text-neutral-800" for="forgotEmail">Email Address</label>
+            <input
+              id="forgotEmail"
+              type="email"
+              placeholder="Enter your registered email"
+              class="w-full px-3.5 py-2.5 rounded-lg border border-neutral-300 text-xs sm:text-sm text-neutral-800 placeholder-neutral-400 focus:ring-1.5 focus:ring-neutral-900 focus:outline-none"
+              required
+            />
+          </div>
+          <button type="submit" class="w-full py-3 bg-[#1b1b1b] hover:bg-neutral-800 text-white text-xs sm:text-sm font-medium rounded-lg transition-all shadow-md cursor-pointer">
+            Send Reset Link
+          </button>
+          <div class="text-center text-xs text-neutral-500">
+            <button type="button" data-tab="signin" class="tab-link-btn text-neutral-900 font-medium hover:underline cursor-pointer">Back to Sign In</button>
+          </div>
+        </form>
+
+      </div>
+
+      <!-- Bottom-right geometric accent disc -->
+      <div class="absolute bottom-0 right-0 w-32 h-32 sm:w-40 sm:h-40 pointer-events-none overflow-hidden select-none z-0">
+        <div class="absolute -bottom-1 -right-1 w-28 h-28 sm:w-36 sm:h-36 rounded-tl-full bg-neutral-950 shadow-lg"></div>
+        <div class="absolute -bottom-1 -right-1 w-32 h-32 sm:w-40 sm:h-40 rounded-tl-full border-t border-l border-neutral-800/40 pointer-events-none"></div>
+        <div class="absolute -bottom-1 -right-1 w-36 h-36 sm:w-44 sm:h-44 rounded-tl-full border-t border-l border-neutral-800/30 pointer-events-none"></div>
+        <div class="absolute -bottom-1 -right-1 w-40 h-40 sm:w-48 sm:h-48 rounded-tl-full border-t border-l border-neutral-800/20 pointer-events-none"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Simple toast for the "Send Reset Link" action -->
+  <div id="toast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 bg-neutral-900 text-white text-xs font-medium px-4 py-2.5 rounded-lg shadow-xl z-[999]"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
